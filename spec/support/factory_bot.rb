@@ -7,4 +7,12 @@ FactoryBot.define do
     password_confirmation { 'password' }
   end
 
+  factory :game do
+    name { 'name' }
+    description { 'description' }
+    promo_image_url { 'promo_image_url' }
+    year { 'year' }
+    esrb { 'esrb' }
+  end
+
 end
