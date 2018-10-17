@@ -43,7 +43,7 @@ class GameIndex extends Component {
     })
     return (
       <div>
-      <h1> Harry is holding me hostage and forcing me to code please help me. He cant read so I know he wont understand this! </h1>
+      <h1> Games </h1>
       <h3>{gameIndexHTML} </h3>
       </div>
     )
