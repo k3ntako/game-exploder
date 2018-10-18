@@ -29,22 +29,19 @@ class GameIndex extends Component {
   render() {
     let gameIndexHTML = this.state.games.map(game => {
       return(
-
-        <li key={game.id}>
-
-        {game.name}
-        <p> {game.description}</p>
-
+        <div key={game.id}>
+        <li>{game.name}</li>
+        <p>{game.description}</p>
         <img src={game.promo_image_url}></img>
-        </li>
+        </div>
 
 
       )
     })
     return (
       <div>
-      <h1> Games </h1>
-      <h3>{gameIndexHTML} </h3>
+      <h1>Games</h1>
+      <h3>{gameIndexHTML}</h3>
       </div>
     )
   }
