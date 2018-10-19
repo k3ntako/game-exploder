@@ -4,27 +4,139 @@ class GamesShowPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      gameInfo: {},
+      reviews: []
     }
+    this.fetchGame = this.fetchGame.bind(this)
+    this.fetchReviews = this.fetchReviews.bind(this)
+    this.pickScoreColor = this.pickScoreColor.bind(this)
   }
+
+  fetchReviews(){
+
+    fetch(`/api/v1/games/${this.props.params.id}/reviews`)
+    .then(response => {
+      if (response.ok) {
+
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      this.setState({ reviews: data.reviews })
+
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  };
+
+  fetchGame(){
+    fetch(`/api/v1/games/${this.props.params.id}`)
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      this.setState({ gameInfo: data })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  };
+
+  pickScoreColor(score){
+    let color;
+    if(score <= 3){
+     color = "score-low"
+     }else if(score <= 6){
+     color = "score-medium"
+    }else if(score <= 8){
+     color = "score-high"
+    }else if(score <= 10){
+     color = "score-perfect"
+    }
+
+    return color
+  }
+
+  componentDidMount(){
+    this.fetchGame()
+    this.fetchReviews()
+  }
+
   render (){
-    return (
-      <div className="grid-x grid-margin-x">
-        <div className="cell small-12">
-          <h1>Game Name</h1>
-        </div>
-        <div className="cell small-8">
-          <img src="https://images.performgroup.com/di/library/GOAL/c7/5a/fifa-19-ronaldo-neymar_e4vrh56c4op71vn6mlvx1lzsr.jpg?t=-318191675&quality=90&w=0&h=1260" />
-        </div>
-        <div className="cell small-4 game-info">
-          <p>Description: FIFA 19 is a football simulation video game developed by EA Vancouver and EA Bucharest, as part of Electronic Arts' FIFA series. Announced on 6 June 2018 for its E3 2018 press conference, it was released on 28 September 2018 for PlayStation 3, PlayStation 4, Xbox 360, Xbox One, Nintendo Switch, and Microsoft Windows. </p>
-          <p>Score: 3/10</p>
-          <p>Number of Reviews: 527</p>
-          <p>ESRB Rating: E</p>
-        </div>
-      </div>
+    let totalScore = 0;
+    let reviewCards = this.state.reviews.map(review => {
+      totalScore += review.score
 
+      let createdDate = new Date(review.created_at)
+      let createdDateText = createdDate.toLocaleDateString("en-US")
 
+      let color = this.pickScoreColor(review.score)
+      console.log(review)
+      return(
+        <div key={review.id} className="grid-x cell review-cards">
+          <div className="review-card cell small-18 medium-20 large-22 ">
+            <div className="review-card-text">
+              <h3><a className="review-card-title" href="/">{review.title}</a></h3>
+              <span className="review-card-username">{review.user.username} </span>
+              <span className="review-card-date">- {createdDateText}</span>
+              <p>{review.body}</p>
+            </div>
+          </div>
+          <div className={`cell small-6 medium-4 large-2 review-card-score ${color}`}>
+            <div className="review-card-score-center-text">
+              <p className="review-card-score-text">{review.score}</p>
+            </div>
+          </div>
+        </div>
+        )
+      })
+
+      let averageScore = (totalScore/this.state.reviews.length).toFixed(1)
+      let color = this.pickScoreColor(averageScore)
+
+      let publisher;
+      if(this.state.gameInfo.publisher){
+        publisher = (<p className="game-attribute"><span className="game-attribute-title">Publisher:</span> {this.state.gameInfo.publisher}</p>)
+      }
+
+      let date;
+      if(this.state.gameInfo.release_date){
+        date = new Date(this.state.gameInfo.release_date).toLocaleDateString("en-US")
+      }
+
+      return (
+        <div className="game-show-page grid-x grid-margin-x cell small-22 small-offset-1 cell large-20 large-offset-2 ">
+          <div className="cell small-24">
+            <h1 className="game-show-page-title">{this.state.gameInfo.name}</h1>
+          </div>
+          <div className="cell small-24 large-14">
+            <div className={`show-page-score ${color}`}>Exploder Score: {averageScore}/10</div>
+            <img src={this.state.gameInfo.promo_image_url} />
+          </div>
+          <div className="cell small-24 large-10 game-attributes">
+            <p className="game-attribute"><span className="game-attribute-title">{this.state.gameInfo.name}</span> {this.state.gameInfo.description}</p>
+            <p className="game-attribute"><span className="game-attribute-title">Number of Reviews:</span> {this.state.reviews.length}</p>
+            <p className="game-attribute"><span className="game-attribute-title">ESRB Rating:</span> {this.state.gameInfo.esrb}</p>
+            <p className="game-attribute"><span className="game-attribute-title">Release Date:</span> {date}</p>
+            <p className="game-attribute"><span className="game-attribute-title">Developer:</span> {this.state.gameInfo.developer}</p>
+
+            {publisher}
+          </div>
+            {reviewCards}
+        </div>
     )
   }
 }

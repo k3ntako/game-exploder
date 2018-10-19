@@ -4,4 +4,6 @@ class Game < ApplicationRecord
   validates :description, presence: true
   validates :year, null: false
   validates :esrb, null: false
+
+  has_many :reviews
 end

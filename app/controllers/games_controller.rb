@@ -1,5 +1,4 @@
 class GamesController < ApplicationController
-  def show
-    render ('/static_pages/index')
+  def index
   end
 end
