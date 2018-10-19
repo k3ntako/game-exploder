@@ -10,4 +10,12 @@ FactoryBot.define do
     birthday {Date.new(1995,2,3)}
   end
 
+  factory :game do
+    name { 'name' }
+    description { 'description' }
+    promo_image_url { 'promo_image_url' }
+    year { 'year' }
+    esrb { 'esrb' }
+  end
+
 end
