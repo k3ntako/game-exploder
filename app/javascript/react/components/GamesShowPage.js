@@ -109,7 +109,7 @@ class GamesShowPage extends Component {
       let averageScoreText, color;
       if(this.state.reviews.length){
         let averageScore = (totalScore/this.state.reviews.length).toFixed(1)
-        averageScoreText = `Exploder Score: $ {averageScore}/10`
+        averageScoreText = `Exploder Score: ${averageScore}/10`
         color = this.pickScoreColor(averageScore)
       }else {
         averageScoreText = "No Reviews"

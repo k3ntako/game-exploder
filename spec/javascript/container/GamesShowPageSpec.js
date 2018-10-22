@@ -121,8 +121,8 @@ describe('Games Show Page', () => {
 
     it('should contain links with the title', (done) => {
       setTimeout(() => {
-        expect(wrapper.find('a').nodes[0].innerHTML).toEqual(review.reviews[0].title);
-        expect(wrapper.find('a').nodes[1].innerHTML).toEqual(review.reviews[1].title);
+        expect(wrapper.find('a').nodes[1].innerHTML).toEqual(review.reviews[0].title);
+        expect(wrapper.find('a').nodes[2].innerHTML).toEqual(review.reviews[1].title);
         done()
       })
     });
