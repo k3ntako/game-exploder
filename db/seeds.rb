@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 game_attributes = [
-  {name: 'Overwatch', description: 'Overwatch is a team-based multiplayer first-person shooter', promo_image_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Overwatch_circle_logo.svg/2000px-Overwatch_circle_logo.svg.png',
+  {name: 'Overwatch', description: 'Overwatch is a team-based multiplayer first-person shooter', promo_image_url: 'https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTc6j8bTV3N2m4CBQKAT1cS6lUOQX.ngdSgiLRMdAu32DtzDJKUuzN1aOTJPFi7RvCaG_JZJBF7TU37nEBObS0xnS6oexMnX_VmFbdu1_AVM3gPqcljwPx9mL3nBEEGiHRvwz1VPBNPlVPoJ.39_fHs1EepEJunV8KgSqlTbNGimJs-&h=1080&w=1920&format=jpg',
   year: '2016', esrb: 'T' },
   {name: 'FIFA 19', description: 'FIFA 19 is a soccer game simulator', promo_image_url: 'https://orig00.deviantart.net/cd77/f/2018/236/f/7/icon_fifa_19_by_hazzbrogaming-dcl12ro.png',
   year: '2018', esrb: 'E'},
