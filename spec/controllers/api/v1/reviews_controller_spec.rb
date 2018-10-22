@@ -1,5 +1,8 @@
+require 'rails_helper'
+
 RSpec.describe Api::V1::ReviewsController, type: :controller do
     before(:each) do
+      Game.create(name: "Overwatch", description: "copying the video", year: '11', esrb: "M", promo_image_url: "image")
       User.create(first_name: "Richard", last_name: "Dumb", email: "afdgfdsf@gmail.com", password: "ksfldjlkj", password_confirmation: "ksfldjlkj", birthday: Date.new(1995,2,3), username: "fkjdsflk;dsjf")
       Review.create(title: 'Review', body: 'good game', score: 7, user: User.last, game: Game.last)
       sign_in User.last
@@ -19,7 +22,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
 
     it "fails to creates a new review without body" do
       post_json = {
-        score: Review.last.score,
+        score: Review.last.score
       }
       prev_count = Review.count
       Review.create(title: 'Review', score: 7, user: User.last, game: Game.last)

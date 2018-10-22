@@ -2,11 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::GamesController, type: :controller do
   before(:each) do
-    Game.destroy_all
     Game.create(name: "Overwatch", description: "copying the video", year: '11', esrb: "M", promo_image_url: "image")
     Game.create(name: 'Call of Duty: Black Ops 4', description: 'COD Black Ops 4 is a shooting game', promo_image_url: 'https://orig00.deviantart.net/145b/f/2018/138/a/6/call_of_duty_black_ops_4___icon_by_blagoicons-dcbu90s.png',
     year: '2018', esrb: 'M')
+  end
 
+  after(:each) do
+    Game.destroy_all
   end
 
    describe "GET#index" do
