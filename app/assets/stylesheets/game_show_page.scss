@@ -20,8 +20,6 @@
 .game-attributes{
   padding: 1.5vw 1.5vw;
   background-color: #f1f1f1;
-  border-bottom-right-radius: 25px;
-
   font-size: 0.9em;
 }
 
@@ -34,6 +32,27 @@
   font-weight: bold;
 }
 
+.add-review{
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 10px 0px;
+  font-weight: 900;
+  background-image: linear-gradient(#0080FF, #2666CF);
+  display: flex;
+  align-items: center;
+}
+
+a.add-review-link{
+  color: white;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+a.add-review-link:hover{
+  color: black;
+}
+
 //Review Card
 .review-cards{
   margin-top: 3vh;
@@ -44,13 +63,13 @@
   border: 3px solid lightgray;
   border-right: none;
   padding: 20px 30px;
+
 }
 
 .review-card-score{
   margin-top: 10px;
-  font-size: 1.3rem;
+
   text-align: center;
-  padding: 10px 0px;
   font-weight: 900;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -68,16 +87,17 @@
   color: gray;
 }
 
+.score-none{
+  color: white;
+  background-image: linear-gradient(gray, black);
+}
 .score-low{
-  background-color: red;
   background-image: linear-gradient(red, black);
 }
 .score-medium{
-  background-color: #ffa100;
   background-image: linear-gradient(#f9d052, #c77f05);
 }
 .score-high{
-  background-color: #74f475;
   background-image: linear-gradient(limegreen, green);
 }
 .score-perfect{
