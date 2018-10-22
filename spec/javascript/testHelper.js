@@ -2,18 +2,18 @@ import { shallow, mount } from 'enzyme';
 import jasmineEnzyme from 'jasmine-enzyme';
 import React from 'react';
 import 'jasmine-ajax';
-import fetch from 'isomorphic-fetch'
+import fetchPonyfill from 'fetch-ponyfill';
+const {fetch, Request, Response, Headers} = fetchPonyfill({});
 
 Object.assign(global, {
   jasmineEnzyme,
   mount,
   React,
   shallow,
-  fetch
-});
-
-beforeEach(() => {
-  jasmineEnzyme();
+  fetch,
+  Request,
+  Response,
+  Headers
 });
 
 // function to require all modules for a given context

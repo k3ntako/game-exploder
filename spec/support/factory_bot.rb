@@ -18,4 +18,12 @@ FactoryBot.define do
     esrb { 'esrb' }
   end
 
+  factory :review do
+    title {'title'}
+    body {'body'}
+    score { 'score' }
+    game { 'game' }
+    user { 'user' }
+  end
+
 end
