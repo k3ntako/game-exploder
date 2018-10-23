@@ -10,9 +10,9 @@ describe Game do
   it { should have_valid(:description).when("Overwatch is a team-based multiplayer first-person shooter")}
   it { should_not have_valid(:description).when(nil, "") }
 
-  it { should have_valid(:year).when("2016") }
-  it { should_not have_valid(:year).when(nil, "") }
+  it { should have_valid(:developer).when("Cool Peoples") }
+  it { should_not have_valid(:developer).when(nil, "") }
 
-  it { should have_valid(:esrb).when("T") }
+  it { should have_valid(:esrb).when("Teen") }
   it { should_not have_valid(:esrb).when(nil, "") }
 end

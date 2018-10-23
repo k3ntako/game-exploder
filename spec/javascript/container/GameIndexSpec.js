@@ -7,7 +7,7 @@ describe('Game Index Page', () => {
 
   beforeEach(() => {
     games = [
-      {id: 1, name: 'Check the weather', description: "Weather Game", year: "1846", esrb: "AO", promo_image_url: "Weather.com Home of the weather and lightning and hurrincaens and tornadoes and thunder and hail and wind and trees"}
+      {id: 1, name: 'Check the weather', description: "Weather Game", release_date: "1846", esrb: "AO", promo_image_url: "Weather.com Home of the weather and lightning and hurrincaens and tornadoes and thunder and hail and wind and trees"}
     ]
     fetchMock.get('/api/v1/games.json', {
       status: 200,
