@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import GameCard from './GameCard'
+
 
 class SearchResult extends Component {
   constructor(props) {
@@ -24,18 +26,9 @@ class SearchResult extends Component {
   }
 
   render() {
-    const games = this.state.games.map(game => {
-      return(
-        <div className="search-bar-results" key={game.id}>
-        <h3 className="search-bar-result-title">{game.name}</h3>
-        <img className="search-bar-result-picture" src={game.promo_image_url} />
-        </div>
-      )
-    })
-
     return(
-      <div>
-        {games}
+      <div className="cell small-22 small-offset-1 cell large-20 large-offset-2">
+        <GameCard games={this.state.games} />
       </div>
     )
   }
