@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchBar from './SearchBar'
 
 class GameIndex extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class GameIndex extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/games.json')
+    fetch('/api/v1/games')
     .then(response => {
       if (response.ok) {
         return response;
@@ -25,8 +26,10 @@ class GameIndex extends Component {
   }
 
   render() {
+
     let gameIndexHTML = this.state.games.map(game => {
       return(
+
         <div key={game.id}>
           <li><a href={`/games/${game.id}`}>{game.name}</a></li>
           <p>{game.description}</p>
@@ -36,6 +39,7 @@ class GameIndex extends Component {
     })
     return (
       <div>
+      <SearchBar />
         <h1>Games</h1>
         <h3>{gameIndexHTML}</h3>
       </div>

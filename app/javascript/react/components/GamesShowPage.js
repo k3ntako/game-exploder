@@ -13,7 +13,7 @@ class GamesShowPage extends Component {
   }
 
   fetchReviews(){
-
+    debugger;
     fetch(`/api/v1/games/${this.props.params.id}/reviews`)
     .then(response => {
       if (response.ok) {
@@ -29,6 +29,7 @@ class GamesShowPage extends Component {
       return response.json();
     })
     .then(data => {
+      debugger;
       this.setState({ reviews: data.reviews })
 
     })
