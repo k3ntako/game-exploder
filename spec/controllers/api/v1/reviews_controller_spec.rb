@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::ReviewsController, type: :controller do
     before(:each) do
-      Game.create(name: "Overwatch", description: "copying the video", year: '11', esrb: "M", promo_image_url: "image")
+      Game.create(name: "Overwatch", description: "copying the video", release_date: Date.new(2018,10,19), esrb: "Mature", promo_image_url: "image", developer: "Hairy Productions")
       User.create(first_name: "Richard", last_name: "Dumb", email: "afdgfdsf@gmail.com", password: "ksfldjlkj", password_confirmation: "ksfldjlkj", birthday: Date.new(1995,2,3), username: "fkjdsflk;dsjf")
       Review.create(title: 'Review', body: 'good game', score: 7, user: User.last, game: Game.last)
       sign_in User.last
