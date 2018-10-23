@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Chakra+Petch');
+
+
+body{
+  background-image: url("gaming-pattern.png");
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+//nav bar
+.top-bar {
+  background-image: -webkit-linear-gradient(gray, black);
+  background-image: -o-linear-gradient(gray, black);
+  background-image: linear-gradient(gray, black);
+}
+
+.top-bar ul{
+  background-color: rgba(255,255,255,0);
+}
+
+#title-link{
+  padding:0;
+}
+
+ul.menu > li > a, #title-link {
+  color: white;
+}
+
+ul.menu > li > a:hover, #title-link:hover {
+  color: steelblue;
+}
