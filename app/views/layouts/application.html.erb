@@ -5,38 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>
 
-    <%= javascript_include_tag "vendor/modernizr" %>
+  <%= javascript_include_tag "application" %>
 
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">GameExploder</a></h1>
-      </li>
-    </ul>
 
-    <section class="top-bar-section">
-      <ul class="right">
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li class="menu-text"><a id="title-link" href="/">GameExploder</a></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
         <%- if current_user -%>
+          <li><img src="<%= current_user.profile_photo %>" width="45" height="45" /></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
           <li><%= link_to 'Sign In', new_user_session_path %></li>
         <%- end -%>
       </ul>
-    </section>
-  </nav>
+    </div>
+  </div>
+
 
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
       <%= value %>
     </div>
   <%- end -%>
+  <div class="body">
+    <%= yield %>
+  </div>
 
-  <%= yield %>
 
 
   <%= javascript_include_tag 'application' %>

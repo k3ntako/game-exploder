@@ -7,7 +7,8 @@ describe('Game Index Page', () => {
 
   beforeEach(() => {
     games = [
-      {id: 1, name: 'Check the weather', description: "Weather Game", year: "1846", esrb: "AO", promo_image_url: "Weather.com Home of the weather and lightning and hurrincaens and tornadoes and thunder and hail and wind and trees"}
+      {id: 1, name: 'Check the weather', description: "is a weather game.", release_date: "1846", esrb: "Teen", promo_image_url: "https://www.iana.org/_img/2013.1/iana-logo-header.svg"},
+      {id: 2, name: 'Train game', description: "is a train game.", release_date: "1999", esrb: "Everyone", promo_image_url: "https://www.iana.org/_img/2013.1/iana-logo-header.svg"}
     ]
     fetchMock.get('/api/v1/games.json', {
       status: 200,
@@ -21,16 +22,13 @@ describe('Game Index Page', () => {
   afterEach(fetchMock.restore)
 
   describe('header', () => {
-    it('renders an h1', () => {
-      expect(wrapper.find('h1')).toBePresent()
-      expect(wrapper.find('h1').text()).toEqual('Games')
-    })
-
     it('renders a list item for each item returned from the api call', (done) => {
       setTimeout(() => {
-        expect(wrapper.find('li').length).toEqual(games.length)
-        expect(wrapper.find('li').text()).toEqual(games[0].name)
-        expect(wrapper.find('p').text()).toEqual(games[0].description)
+        expect(wrapper.find('h3').length).toEqual(games.length)
+        expect(wrapper.find('h3').at(0).text()).toEqual(games[0].name)
+        expect(wrapper.find('p').at(0).text()).toMatch(games[0].description)
+        expect(wrapper.find('h3').at(1).text()).toEqual(games[1].name)
+        expect(wrapper.find('p').at(1).text()).toMatch(games[1].description)
         done()
       }, )
     })

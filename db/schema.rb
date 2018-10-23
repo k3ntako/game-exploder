@@ -20,12 +20,24 @@ ActiveRecord::Schema.define(version: 2018_10_22_184225) do
     t.string "logo_url"
     t.string "promo_image_url", null: false
     t.string "description", null: false
-    t.integer "year", null: false
+    t.date "release_date", null: false
     t.string "publisher"
-    t.string "developer"
+    t.string "developer", null: false
     t.string "esrb", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "body", null: false
+    t.integer "score", null: false
+    t.bigint "game_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_reviews_on_game_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

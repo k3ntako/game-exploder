@@ -1,0 +1,120 @@
+.game-show-page {
+  margin-bottom: 30px;
+}
+
+//Game Information
+.game-show-page-title{
+  margin-top: 20px;
+}
+
+.show-page-score{
+  font-size: 1.5rem;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  text-align: center;
+  padding: 10px 0px;
+  font-weight: 900;
+}
+
+
+.game-attributes{
+  padding: 1.5vw 1.5vw;
+  background-color: #f1f1f1;
+  font-size: 0.9em;
+}
+
+.game-attribute{
+  margin: 0;
+  text-align: justify;
+}
+
+.game-attribute-title{
+  font-weight: bold;
+}
+
+.add-review{
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 10px 0px;
+  font-weight: 900;
+  background-image: linear-gradient(#0080FF, #2666CF);
+  display: flex;
+  align-items: center;
+}
+
+a.add-review-link{
+  color: white;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+a.add-review-link:hover{
+  color: black;
+}
+
+//Review Card
+.review-cards{
+  margin-top: 3vh;
+}
+
+.review-card{
+  margin-top: 10px;
+  border: 3px solid lightgray;
+  border-right: none;
+  padding: 20px 30px;
+
+}
+
+.review-card-score{
+  margin-top: 10px;
+
+  text-align: center;
+  font-weight: 900;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.review-card-title:hover{
+  color: gray;
+}
+.review-card-username{
+  font-style: italic;
+}
+.review-card-date{
+  color: gray;
+}
+
+.score-none{
+  color: white;
+  background-image: linear-gradient(gray, black);
+}
+.score-low{
+  background-image: linear-gradient(red, black);
+}
+.score-medium{
+  background-image: linear-gradient(#f9d052, #c77f05);
+}
+.score-high{
+  background-image: linear-gradient(yellow, red);
+}
+.score-perfect{
+  background-image: linear-gradient(limegreen, green);
+}
+
+.review-card-score-center-text{
+  margin: auto;
+}
+.review-card-score-text{
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2.5rem;
+}
+
+.review-card-user-photo {
+  height: 37px;
+  width: 30px;
+}
