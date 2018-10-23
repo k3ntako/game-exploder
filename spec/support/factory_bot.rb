@@ -14,8 +14,9 @@ FactoryBot.define do
     name { 'name' }
     description { 'description' }
     promo_image_url { 'promo_image_url' }
-    year { 'year' }
+    release_date { Date.new(1999,9,10) }
     esrb { 'esrb' }
+    developer { 'developer' }
   end
 
   factory :review do

@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem "active_model_serializers"
+
 group :development, :test do
 
 end
@@ -57,5 +59,5 @@ gem 'database_cleaner', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
-gem 'foundation-rails', '~> 5.0'
+gem 'foundation-rails', '~> 6.4.3.0'
 gem 'webpacker', '~> 3.3'

@@ -1,9 +1,7 @@
-
 import React from 'react'
 import { render } from 'react-dom'
 
-import App from '../react/components/app'
-import GameIndex from '../react/components/GameIndex'
+import App from '../react/components/App'
 import RedBox from 'redbox-react'
 
 document.addEventListener('DOMContentLoaded', () => {
