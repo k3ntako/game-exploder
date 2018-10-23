@@ -29,19 +29,26 @@ class GameIndex extends Component {
 
     let gameIndexHTML = this.state.games.map(game => {
       return(
+        <div key={game.id} className="game-card grid-x grid-margin-x">
+          <div className="cell small-12">
+            <img className="game-promo-image-index" src={game.promo_image_url} />
+          </div>
+          <div className="cell small-12">
+            <h3><a href={`/games/${game.id}`}>{game.name}</a></h3>
+            <p>{game.name} {game.description}</p>
+          </div>
 
-        <div key={game.id}>
-          <li><a href={`/games/${game.id}`}>{game.name}</a></li>
-          <p>{game.description}</p>
-          <img src={game.promo_image_url}></img>
         </div>
       )
     })
     return (
-      <div>
-      <SearchBar />
-        <h1>Games</h1>
-        <h3>{gameIndexHTML}</h3>
+
+
+
+      <div className="cell small-22 small-offset-1 cell large-20 large-offset-2">
+        <SearchBar />
+        {gameIndexHTML}
+
       </div>
     )
   }

@@ -61,13 +61,13 @@ class GamesShowPage extends Component {
     if(score === -1){
       color = "score-none"
     }else if(score <= 3){
-     color = "score-low"
-     }else if(score <= 6){
-     color = "score-medium"
+      color = "score-low"
+    }else if(score <= 6){
+      color = "score-medium"
     }else if(score <= 8){
-     color = "score-high"
+      color = "score-high"
     }else if(score <= 10){
-     color = "score-perfect"
+      color = "score-perfect"
     }
 
     return color
@@ -104,55 +104,55 @@ class GamesShowPage extends Component {
             </div>
           </div>
         </div>
-        )
-      })
+      )
+    })
 
-      let averageScoreText, color;
-      if(this.state.reviews.length){
-        let averageScore = (totalScore/this.state.reviews.length).toFixed(1)
-        averageScoreText = `Exploder Score: ${averageScore}/10`
-        color = this.pickScoreColor(averageScore)
-      }else {
-        averageScoreText = "No Reviews"
-        color = this.pickScoreColor(-1)
-      }
-
-
-      let publisher;
-      if(this.state.gameInfo.publisher){
-        publisher = (<p className="game-attribute"><span className="game-attribute-title">Publisher:</span> {this.state.gameInfo.publisher}</p>)
-      }
-
-      let date;
-      if(this.state.gameInfo.release_date){
-        date = new Date(this.state.gameInfo.release_date).toLocaleDateString("en-US")
-      }
-
-      return (
-        <div className="game-show-page grid-x grid-margin-x cell small-22 small-offset-1 cell large-20 large-offset-2 ">
-          <div className="cell small-24">
-            <h1 className="game-show-page-title">{this.state.gameInfo.name}</h1>
-          </div>
-          <div className="cell small-24 large-14">
-            <div className={`show-page-score ${color}`}>{averageScoreText}</div>
-            <img src={this.state.gameInfo.promo_image_url} />
-          </div>
-          <div className="cell small-24 large-10 grid-y">
-            <div className="game-attributes cell large-21 small-18">
-              <p className="game-attribute"><span className="game-attribute-title">{this.state.gameInfo.name}</span> {this.state.gameInfo.description}</p>
-              <p className="game-attribute"><span className="game-attribute-title">Number of Reviews:</span> {this.state.reviews.length}</p>
-              <p className="game-attribute"><span className="game-attribute-title">ESRB Rating:</span> {this.state.gameInfo.esrb}</p>
-              <p className="game-attribute"><span className="game-attribute-title">Release Date:</span> {date}</p>
-              <p className="game-attribute"><span className="game-attribute-title">Developer:</span> {this.state.gameInfo.developer}</p>
-
-              {publisher}
+    let averageScoreText, color;
+    if(this.state.reviews.length){
+      let averageScore = (totalScore/this.state.reviews.length).toFixed(1)
+      averageScoreText = `Exploder Score: ${averageScore}/10`
+      color = this.pickScoreColor(averageScore)
+    }else {
+      averageScoreText = "No Reviews"
+      color = this.pickScoreColor(-1)
+    }
 
 
-            </div>
-            <div className="add-review cell large-3 small-6"><a className="add-review-link " href={`/games/${this.props.params.id}/reviews/new`}>Add Review</a></div>
-          </div>
-            {reviewCards}
+    let publisher;
+    if(this.state.gameInfo.publisher){
+      publisher = (<p className="game-attribute"><span className="game-attribute-title">Publisher:</span> {this.state.gameInfo.publisher}</p>)
+    }
+
+    let date;
+    if(this.state.gameInfo.release_date){
+      date = new Date(this.state.gameInfo.release_date).toLocaleDateString("en-US")
+    }
+
+    return (
+      <div className="game-show-page grid-x grid-margin-x cell small-22 small-offset-1 cell large-20 large-offset-2">
+        <div className="cell small-24">
+          <h1 className="game-show-page-title">{this.state.gameInfo.name}</h1>
         </div>
+        <div className="cell small-24 large-14">
+          <div className={`show-page-score ${color}`}>{averageScoreText}</div>
+          <img src={this.state.gameInfo.promo_image_url} />
+        </div>
+        <div className="cell small-24 large-10 grid-y">
+          <div className="game-attributes cell large-21 small-18">
+            <p className="game-attribute"><span className="game-attribute-title">{this.state.gameInfo.name}</span> {this.state.gameInfo.description}</p>
+            <p className="game-attribute"><span className="game-attribute-title">Number of Reviews:</span> {this.state.reviews.length}</p>
+            <p className="game-attribute"><span className="game-attribute-title">ESRB Rating:</span> {this.state.gameInfo.esrb}</p>
+            <p className="game-attribute"><span className="game-attribute-title">Release Date:</span> {date}</p>
+            <p className="game-attribute"><span className="game-attribute-title">Developer:</span> {this.state.gameInfo.developer}</p>
+
+            {publisher}
+
+
+          </div>
+          <div className="add-review cell large-3 small-6"><a className="add-review-link " href={`/games/${this.props.params.id}/reviews/new`}>Add Review</a></div>
+        </div>
+        {reviewCards}
+      </div>
     )
   }
 }
