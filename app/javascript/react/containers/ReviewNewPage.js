@@ -64,7 +64,7 @@ class ReviewNewPage extends Component {
 
   render() {
     return(
-      <div className="cell small-22 small-offset-1 cell large-20 large-offset-2">
+      <div>
       <h1> Add your own review! </h1>
       <form className="new-article-form callout" onSubmit={this.handleSubmit}>
         <TitleField
