@@ -128,7 +128,7 @@ class GamesShowPage extends Component {
     }
 
     return (
-      <div className="game-show-page grid-x grid-margin-x cell small-22 small-offset-1 cell large-20 large-offset-2">
+      <div className="game-show-page grid-x grid-margin-x">
         <div className="cell small-24">
           <h1 className="game-show-page-title">{this.state.gameInfo.name}</h1>
         </div>

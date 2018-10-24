@@ -40,7 +40,7 @@ class GameIndex extends Component {
       )
     })
     return (
-      <div className="cell small-22 small-offset-1 cell large-20 large-offset-2">
+      <div>
         {gameIndexHTML}
       </div>
     )
