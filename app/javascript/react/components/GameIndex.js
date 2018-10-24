@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import SearchBar from './SearchBar'
+import GameCard from './GameCard'
+
 
 class GameIndex extends Component {
   constructor(props) {
@@ -25,23 +28,15 @@ class GameIndex extends Component {
   }
 
   render() {
-    let gameIndexHTML = this.state.games.map(game => {
-      return(
-        <div key={game.id} className="game-card grid-x grid-margin-x">
-          <div className="cell small-12">
-            <img className="game-promo-image-index" src={game.promo_image_url} />
-          </div>
-          <div className="cell small-12">
-            <h3><a href={`/games/${game.id}`}>{game.name}</a></h3>
-            <p>{game.name} {game.description}</p>
-          </div>
-
-        </div>
-      )
-    })
     return (
+<<<<<<< HEAD
       <div className="cell small-22 small-offset-1 cell large-20 large-offset-2">
+        <SearchBar />
+        <GameCard games={this.state.games} />
+=======
+      <div>
         {gameIndexHTML}
+>>>>>>> 69fce6685f2495e133bc33f8696f30252bce412f
       </div>
     )
   }
