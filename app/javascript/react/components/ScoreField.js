@@ -16,12 +16,3 @@ const ScoreField = (props) => {
 }
 
 export default ScoreField;
-
-//
-// <option value=
-//
-//
-//   type='text'
-//   value={props.content}
-//
-// />

@@ -20,18 +20,16 @@ class SearchBar extends Component {
 
   render() {
 
-  return(
-    <div className="search">
-    <form>
-    <input id="search-input" type='text' name='searchString' value={this.state.searchString} onChange={this.handleChange} />
+    return(
+      <div className="search">
+      <form>
+      <input id="search-input" type='text' name='searchString' value={this.state.searchString} onChange={this.handleChange} />
 
-    <Link to={`/games/search/results/${this.state.searchString}`}>Search</Link>
-    </form>
-    </div>
-  )
-
-
-}
+      <Link to={`/games/search/results/${this.state.searchString}`}>Search</Link>
+      </form>
+      </div>
+    )
+  }
 }
 
 export default SearchBar;
