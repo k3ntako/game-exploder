@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  
   namespace :api do
     namespace :v1 do
       resources :games, only: [:index, :create, :show] do
@@ -7,6 +8,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
   root 'games#index'
-  get '*path', to: 'games#index'
+  get '/games', to: 'games#index'
+  get '/games/:id', to: 'games#index'
+  get '/games/:id/reviews/new', to: 'games#index'
 end
