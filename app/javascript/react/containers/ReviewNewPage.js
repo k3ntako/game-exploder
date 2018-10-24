@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import BodyField from '../components/BodyField'
 import TitleField from '../components/TitleField'
 import ScoreField from '../components/ScoreField'
+import { browserHistory } from 'react-router';
 
 class ReviewNewPage extends Component {
   constructor(props) {
@@ -58,10 +59,13 @@ class ReviewNewPage extends Component {
     score: this.state.reviewScore
     }
     this.addNewReview(formPayload)
+    browserHistory.push(`/games/${this.props.params.id}`)
   }
 
   render() {
     return(
+      <div className="cell small-22 small-offset-1 cell large-20 large-offset-2">
+      <h1> Add your personal review!!!! (: (; </h1>
       <form className="new-article-form callout" onSubmit={this.handleSubmit}>
         <TitleField
           content={this.state.reviewTitle}
@@ -85,11 +89,14 @@ class ReviewNewPage extends Component {
           handleScoreChange={this.handleScoreChange}
         />
 
+
         <div className="button-group">
+
           <button className="button">Clear</button>
           <input className="button" type="submit" value="Submit"/>
         </div>
       </form>
+      </div>
     )
   }
 }

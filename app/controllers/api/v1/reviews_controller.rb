@@ -9,6 +9,10 @@ protect_from_forgery unless: -> { request.format.json? }
     render json: new_review, adapter: :json
   end
 
+  def index
+    render json: Game.find(params[:game_id]).reviews.order("created_at DESC"), adapter: :json
+  end
+
   private
 
   def review_params
