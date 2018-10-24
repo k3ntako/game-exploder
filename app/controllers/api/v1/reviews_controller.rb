@@ -1,5 +1,9 @@
 class Api::V1::ReviewsController < ApplicationController
-protect_from_forgery unless: -> { request.format.json? }
+  protect_from_forgery unless: -> { request.format.json? }
+  def index
+    render json: Game.find(params[:game_id]).reviews.order("created_at DESC"), adapter: :json
+  end
+
   def new
   end
 

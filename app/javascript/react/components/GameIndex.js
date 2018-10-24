@@ -29,9 +29,14 @@ class GameIndex extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <div className="cell small-22 small-offset-1 cell large-20 large-offset-2">
         <SearchBar />
         <GameCard games={this.state.games} />
+=======
+      <div>
+        {gameIndexHTML}
+>>>>>>> 69fce6685f2495e133bc33f8696f30252bce412f
       </div>
     )
   }
