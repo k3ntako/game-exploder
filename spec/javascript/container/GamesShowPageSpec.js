@@ -121,8 +121,8 @@ describe('Games Show Page', () => {
 
     it('should contain links with the title', (done) => {
       setTimeout(() => {
-        expect(wrapper.find('a').nodes[1].innerHTML).toEqual(review.reviews[0].title);
-        expect(wrapper.find('a').nodes[2].innerHTML).toEqual(review.reviews[1].title);
+        expect(wrapper.find('a').nodes[0].innerHTML).toEqual(review.reviews[0].title);
+        expect(wrapper.find('a').nodes[1].innerHTML).toEqual(review.reviews[1].title);
         done()
       })
     });
@@ -134,13 +134,6 @@ describe('Games Show Page', () => {
 
         expect(wrapper.find('.review-card-text').nodes[0].innerHTML).toMatch(review.reviews[0].body);
         expect(wrapper.find('.review-card-text').nodes[1].innerHTML).toMatch(review.reviews[1].body);
-        done()
-      })
-    });
-
-    it('should not see delete button if not logged in', (done) => {
-      setTimeout(() => {
-        expect(page).to have_no_content("Delete Review");
         done()
       })
     });

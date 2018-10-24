@@ -205,7 +205,6 @@ class GamesShowPage extends Component {
         </div>
       )
     }
-    console.log(addReview, this.state.current_user_id);
 
     return (
       <div className="game-show-page grid-x grid-margin-x">
