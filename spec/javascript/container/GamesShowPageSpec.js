@@ -137,5 +137,12 @@ describe('Games Show Page', () => {
         done()
       })
     });
+
+    it('should not see delete button if not logged in', (done) => {
+      setTimeout(() => {
+        expect(page).to have_no_content("Delete Review");
+        done()
+      })
+    });
   })
 })
