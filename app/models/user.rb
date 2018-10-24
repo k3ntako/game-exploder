@@ -11,4 +11,5 @@ class User < ApplicationRecord
   validates :birthday, presence: true
   validates :username, presence: true
 
+  has_many :reviews
 end

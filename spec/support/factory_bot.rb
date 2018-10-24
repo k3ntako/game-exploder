@@ -19,4 +19,12 @@ FactoryBot.define do
     developer { 'developer' }
   end
 
+  factory :review do
+    title {'title'}
+    body {'body'}
+    score { 'score' }
+    game { 'game' }
+    user { 'user' }
+  end
+
 end
