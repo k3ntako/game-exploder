@@ -13,11 +13,9 @@ class GamesShowPage extends Component {
   }
 
   fetchReviews(){
-
     fetch(`/api/v1/games/${this.props.params.id}/reviews`)
     .then(response => {
       if (response.ok) {
-
         return response;
       } else {
         let errorMessage = `${response.status} (${response.statusText})`,
@@ -30,7 +28,6 @@ class GamesShowPage extends Component {
     })
     .then(data => {
       this.setState({ reviews: data.reviews })
-
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   };

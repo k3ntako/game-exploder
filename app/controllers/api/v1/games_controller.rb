@@ -4,12 +4,18 @@ class Api::V1::GamesController < ApplicationController
   end
 
   def index
-    render json: Game.all, adapter: :json
+    render json: Game.all
   end
 
   def create
     data = JSON.parse(request.body.read)
     new_game = Game.create(name: data["name"], promo_image_url: data["promo_image_url"], description: data["description"], release_date: data["release_date"], esrb: data["esrb"], developer: data["developer"])
-    render json: new_game, adapter: :json
+    render json: new_game
   end
+
+  def search
+    @games = Game.where("name ILIKE ?", "%#{params['search_string']}%")
+    render json: @games
+  end
+
 end
