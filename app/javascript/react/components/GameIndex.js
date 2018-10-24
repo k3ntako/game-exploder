@@ -7,7 +7,7 @@ class GameIndex extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/v1/games.json')
+    fetch('/api/v1/games')
     .then(response => {
       if (response.ok) {
         return response;
