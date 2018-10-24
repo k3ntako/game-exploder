@@ -5,6 +5,7 @@ RSpec.describe Api::V1::GamesController, type: :controller do
     Game.create(name: "Overwatch", description: "copying the video", release_date: Date.new(2018,10,19), esrb: "Mature", promo_image_url: "image", developer: "Hairy Productions")
     Game.create(name: 'Call of Duty: Black Ops 4', description: 'COD Black Ops 4 is a shooting game', promo_image_url: 'https://orig00.deviantart.net/145b/f/2018/138/a/6/call_of_duty_black_ops_4___icon_by_blagoicons-dcbu90s.png',
     release_date: Date.new(2016,1,19), esrb: 'Mature', developer: "Almonds Productions")
+
   end
 
   after(:each) do
@@ -21,6 +22,19 @@ RSpec.describe Api::V1::GamesController, type: :controller do
       expect(returned_json[1]["name"]).to eq "Call of Duty: Black Ops 4"
      end
   end
+
+  describe "GET#search" do
+   it "should return a list of all the searched games" do
+     get :search
+     returned_json = JSON.parse(response.body)
+     expect(response.status).to eq 200
+     searched_games = []
+     expect(response.content_type).to eq "application/json"
+     searched_games << Game.find_by(name: "Overwatch")
+     expect(searched_games.length).to eq 1
+     expect(searched_games[0]["name"]).to eq "Overwatch"
+    end
+ end
 
   describe "POST#create" do
     let!(:new_game) { FactoryBot.create(:game, name: 'FIFA 19', description: 'FIFA 19 is a soccer game simulator', promo_image_url: 'image',

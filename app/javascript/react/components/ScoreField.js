@@ -1,16 +1,17 @@
 import React from 'react';
 
 const ScoreField = (props) => {
+  let nums = []
+  for(let i = 1; i < 11; i++){
+    nums.push(<option value={`${i}`} key={i}>{i}</option>)
+  }
   return (
-    <label>{props.label}
-      <input
-        name={props.name}
-        id={props.id}
-        type='text'
-        value={props.content}
-        onChange={props.handleScoreChange}
-      />
-    </label>
+    <div>
+      <label>{props.label}</label>
+        <select id={props.id} name={props.name} onChange={props.handleScoreChange}>
+          {nums}
+        </select>
+    </div>
   );
 }
 

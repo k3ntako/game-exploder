@@ -20,7 +20,6 @@ class GamesShowPage extends Component {
     fetch(`/api/v1/games/${this.props.params.id}/reviews`)
     .then(response => {
       if (response.ok) {
-
         return response;
       } else {
         let errorMessage = `${response.status} (${response.statusText})`,
@@ -209,7 +208,7 @@ class GamesShowPage extends Component {
     console.log(addReview, this.state.current_user_id);
 
     return (
-      <div className="game-show-page grid-x grid-margin-x cell small-22 small-offset-1 cell large-20 large-offset-2">
+      <div className="game-show-page grid-x grid-margin-x">
         <div className="cell small-24">
           <h1 className="game-show-page-title">{this.state.gameInfo.name}</h1>
         </div>

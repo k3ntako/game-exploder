@@ -4,11 +4,13 @@ class Api::V1::ReviewsController < ApplicationController
 
   def index
     reviews = Game.find(params[:game_id]).reviews.order("created_at DESC")
-    if !current_user
-      render json: {reviews: ActiveModel::Serializer::ArraySerializer.new(reviews,each_serializer: ReviewSerializer), user_id: -1}
-    else
-      render json: {reviews: ActiveModel::Serializer::ArraySerializer.new(reviews,each_serializer: ReviewSerializer), user_id: current_user.id}
+    user_id = -1
+
+    if current_user
+      user_id = current_user.id
     end
+
+    render json: {reviews: ActiveModel::Serializer::ArraySerializer.new(reviews,each_serializer: ReviewSerializer), user_id: user_id}
   end
 
   def new
@@ -26,7 +28,7 @@ class Api::V1::ReviewsController < ApplicationController
     else
       render json: {message: "You can only delete your own reviews."}, status: 401
     end
-end
+  end
 
   private
 
