@@ -22,6 +22,10 @@ class Api::V1::ReviewsController < ApplicationController
     render json: new_review
   end
 
+  def show
+    render json: Review.find(params[:id])
+  end
+  
   def destroy
     if current_user_access
       Review.destroy(params[:id])

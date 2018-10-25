@@ -56,4 +56,5 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(Review.last.body).to eq 'good game'
       expect(Review.last.score).to eq 7
     end
+
   end

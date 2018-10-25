@@ -5,8 +5,12 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'games/search', to: 'games#search'
       resources :games, only: [:index, :create, :show] do
-        resources :reviews, only: [:new, :create, :index, :destroy]
+        resources :reviews, only: [:new, :create, :index, :destroy, :show]
       end
+      resources :reviews, only: [:new, :create, :show] do
+        resources :comments, only: [:new, :create, :index, :show]
+      end
+
     end
   end
 
@@ -15,4 +19,5 @@ Rails.application.routes.draw do
   get '/games/:id', to: 'games#index'
   get '/games/search/results/:searchString', to: 'games#index'
   get '/games/:id/reviews/new', to: 'games#index'
+  get 'games/:id/reviews/:review_id', to: 'games#index'
 end

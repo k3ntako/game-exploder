@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReviewsShowPage from './ReviewsShowPage'
 
 class GamesShowPage extends Component {
   constructor(props) {
@@ -164,7 +165,7 @@ class GamesShowPage extends Component {
         <div key={review.id} className="grid-x cell review-cards">
           <div className="review-card cell small-18 medium-20 large-22 ">
             <div className="review-card-text">
-              <h3><a className="review-card-title" href="/">{review.title}</a></h3>
+              <h3><a className="review-card-title" href={`/games/${this.props.params.id}/reviews/${review.id}`}>{review.title}</a></h3>
               <img className="review-card-user-photo" src={profilePhoto} />
               <span className="review-card-username">{review.user.username} </span>
               <span className="review-card-date">- {createdDateText}</span>

@@ -27,4 +27,10 @@ FactoryBot.define do
     user { 'user' }
   end
 
+  factory :comment do
+    body {'body'}
+    review {"review"}
+    user {"user"}
+  end
+
 end
