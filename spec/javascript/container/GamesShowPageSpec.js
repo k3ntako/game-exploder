@@ -84,9 +84,7 @@ describe('Games Show Page', () => {
     it('should render an img with promotion image', (done) => {
       setTimeout(() => {
         expect(wrapper.find('img')).toBePresent()
-        expect(wrapper.find('img').props()).toEqual({
-          src: 'https://commons.wikimedia.org/wiki/File:Weather_symbols_p.png'
-        });
+        expect(wrapper.find('img').nodes[0].src).toEqual('https://commons.wikimedia.org/wiki/File:Weather_symbols_p.png');
         done()
       })
     })
@@ -95,7 +93,8 @@ describe('Games Show Page', () => {
   describe('Review', () => {
     it('should render the number of reviews received', (done) => {
       setTimeout(() => {
-        expect(wrapper.find('.review-card').length).toEqual(2);
+
+        expect(wrapper.find('.review-cards').length).toEqual(2);
         done()
       })
     });
@@ -123,7 +122,6 @@ describe('Games Show Page', () => {
 
         expect(wrapper.find('.review-card-text').nodes[0].innerHTML).toMatch(review.reviews[0].body);
         expect(wrapper.find('.review-card-text').nodes[1].innerHTML).toMatch(review.reviews[1].body);
-        expect(wrapper.find('.review-card').length).toEqual(0);
         done()
       })
     });

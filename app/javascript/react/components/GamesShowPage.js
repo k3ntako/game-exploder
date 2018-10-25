@@ -156,9 +156,9 @@ class GamesShowPage extends Component {
 
 
       let profilePhoto = "https://vignette.wikia.nocookie.net/bungostraydogs/images/1/1e/Profile-icon-9.png/revision/latest?cb=20171030104015"
-      if (review.user.profile_photo.url) {
-        profilePhoto = review.user.profile_photo.url
-      }
+      // if (review.user.profile_photo.url) {
+      //   profilePhoto = review.user.profile_photo.url
+      // }
 
       return(
         <div key={review.id} className="grid-x cell review-cards">
