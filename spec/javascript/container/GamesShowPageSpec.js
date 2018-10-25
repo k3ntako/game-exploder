@@ -90,17 +90,6 @@ describe('Games Show Page', () => {
         done()
       })
     })
-
-    it('renders all information on the game', (done) => {
-      setTimeout(() => {
-        expect(wrapper.find('.game-attributes').text()).toMatch(game.description)
-        expect(wrapper.find('.game-attributes').text()).toMatch(game.name)
-        expect(wrapper.find('.game-attributes').text()).toMatch("Number of Reviews: 2")
-        expect(wrapper.find('.game-attributes').text()).toMatch(game.esrb)
-        expect(wrapper.find('.game-attributes').text()).toMatch(game.developer)
-        done()
-      })
-    })
   });
 
   describe('Review', () => {
@@ -134,6 +123,7 @@ describe('Games Show Page', () => {
 
         expect(wrapper.find('.review-card-text').nodes[0].innerHTML).toMatch(review.reviews[0].body);
         expect(wrapper.find('.review-card-text').nodes[1].innerHTML).toMatch(review.reviews[1].body);
+        expect(wrapper.find('.review-card').length).toEqual(0);
         done()
       })
     });
