@@ -3,11 +3,10 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
+#  movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#  Character.create(name: 'Luke', movie: movies.first)
 game_attributes = [
- {name: 'Overwatch', description: 'is a team-based multiplayer first-person shooter.', promo_image_url: 'https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTc6j8bTV3N2m4CBQKAT1cS6lUOQX.ngdSgiLRMdAu32DtzDJKUuzN1aOTJPFi7RvCaG_JZJBF7TU37nEBObS0xnS6oexMnX_VmFbdu1_AVM3gPqcljwPx9mL3nBEEGiHRvwz1VPBNPlVPoJ.39_fHs1EepEJunV8KgSqlTbNGimJs-&h=1080&w=1920&format=jpg', developer: "Blizzard Entertainment", release_date: Date.new(2016,5,24), esrb: 'Teen'},
+ {name: 'Overwatch', description: 'You control one of several heroes in competitive 6-person team shooting matches. Battle over objectives, take down the other team, and achieve victory.', promo_image_url: 'https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTc6j8bTV3N2m4CBQKAT1cS6lUOQX.ngdSgiLRMdAu32DtzDJKUuzN1aOTJPFi7RvCaG_JZJBF7TU37nEBObS0xnS6oexMnX_VmFbdu1_AVM3gPqcljwPx9mL3nBEEGiHRvwz1VPBNPlVPoJ.39_fHs1EepEJunV8KgSqlTbNGimJs-&h=1080&w=1920&format=jpg', developer: "Blizzard Entertainment", release_date: Date.new(2016,5,24), esrb: 'Teen'},
  {name: 'FIFA 19', description: 'delivers a champion-caliber experience on and off the pitch. Led by the prestigious UEFA Champions League, FIFA 19 offers enhanced gameplay features that allow you to control the pitch in every moment.', promo_image_url: 'https://images.performgroup.com/di/library/GOAL/c7/5a/fifa-19-ronaldo-neymar_e4vrh56c4op71vn6mlvx1lzsr.jpg?t=-318191675&quality=90&w=1280',developer: "Electronic Arts", release_date: Date.new(2018,9,28), esrb: 'Everyone'},
  {name: 'Call of Duty: Black Ops 4', description: 'is a multiplayer first-person shooter video game. Unlike previous titles in the Call of Duty series, Black Ops 4 is the first entry to not feature a traditional single-player campaign, and contains only Multiplayer, Zombies and a new battle royale mode called Blackout.', promo_image_url: 'https://charlieintel.com/wp-content/uploads/2018/05/BO4_Cover_Art_1080p.png',developer: "Treyarch", release_date: Date.new(2018,10,12), esrb: 'Mature'},
  {name: 'Hearthstone', description: 'the fast-paced strategy card game that\'s easy to learn and massively fun.', promo_image_url: 'https://d2q63o9r0h0ohi.cloudfront.net/images/fb-share/facebook-share-default-04812acb25dba13239f3dbe52750ff0f4ae58cc52b5924e7cf6ffea5e1b8993d4f07bb5918b25cb9f8bb8f626f694e20e579f8eb50a43de1c1fd2fc1d6c81a60.jpg', developer: 'Blizzard Entertainment', release_date: Date.new(2014,3,11), esrb: 'Teen'},
@@ -18,39 +17,45 @@ game_attributes = [
  {name: 'Dishonored', description: 'A first-person, stealth, action-adventure game, Dishonored takes players into a unique world designed by Viktor Antonov, the mind behind Half-Life 2\'s oppressive City 17. Filled with Steampunk equipment, future tech, mystical powers, and dark shadowy figures, Dishonored\'s Dunwall is quite unlike anything seen before.', promo_image_url: 'https://www.destructoid.com//ul/408413-Dishonored-2-1080-Wallpaper.jpg', developer: 'Bethesda', release_date: Date.new(2012,10,9), esrb: 'Mature'},
  {name: 'Final Fantasy VII', description: 'is a 1997 role-playing video game developed by Square for the PlayStation console. It is the seventh main installment in the Final Fantasy series.', promo_image_url: 'https://cdn-images-1.medium.com/max/1600/1*11dx0eoU7U_C-AXj2tJNMA.jpeg', developer: 'Square', release_date: Date.new(1997,1,31), esrb: 'Teen'},
  {name: 'Clash of Clans', description: 'Join millions of players worldwide as you build your village, raise a clan, and compete in epic Clan Wars!', promo_image_url: 'http://www.thumbnailtemplates.com/images/thumbs/thumb-096-clash-of-clans-1.jpg', developer: 'Supercell', release_date: Date.new(2012,8,2), esrb: 'Teen'},
- {name: 'Mario Kart Wii', description: 'is a racing video game for the Wii home console and the eighth installment in the Mario Kart series', promo_image_url: 'https://i.ytimg.com/vi/_k9cZHvJAZM/maxresdefault.jpg', developer: 'Nintendo', release_date: Date.new(2008,4,10), esrb: 'Everyone'}
+ {name: 'Mario Kart Wii', description: 'is a racing video game for the Wii home console and the eighth installment in the Mario Kart series', promo_image_url: 'https://i.ytimg.com/vi/_k9cZHvJAZM/maxresdefault.jpg', developer: 'Nintendo', release_date: Date.new(2008,4,10), esrb: 'Everyone'},
+ {name: 'World of Warcraft', description: 'is an online role-playing experience set in the award-winning Warcraft universe. Players assume the roles of Warcraft heroes as they explore, adventure, and quest across a vast world. Being "Massively Multiplayer," World of Warcraft allows thousands of players to interact within the same world.', promo_image_url: 'http://i.imgur.com/glh4rkd.jpg', developer: 'Blizzard Entertainment', release_date: Date.new(2004,11,23), esrb: 'Teen'},
+ {name: 'Destiny', description: 'Set in a "mythic science fiction" world, the game features a multiplayer "shared-world" environment with elements of role-playing games. Activities in Destiny are divided among player versus environment (PvE) and player versus player (PvP) game types. In addition to normal story missions, PvE features three-player "strikes" and six-player raids. A free roam patrol mode is also available for each planet and features public events. PvP features objective-based modes, as well as traditional deathmatch game modes.', promo_image_url: 'https://i.ytimg.com/vi/N2V2Ex-4Xsk/maxresdefault.jpg', developer: 'Bungie', release_date: Date.new(2014,9,9), esrb: 'Teen'},
+ {name: 'Spider-Man', description: 'This isn’t the Spider-Man you’ve met or ever seen before. This is an experienced Peter Parker who’s more masterful at fighting big crime in New York City. At the same time, he’s struggling to balance his chaotic personal life and career while the fate of millions of New Yorkers rest upon his shoulders.', promo_image_url: 'https://media.comicbook.com/2018/09/spider-man-ps4-homecoming-stark-suit-comicbookcom-1132880-1280x0.jpeg', developer: 'Insomniac Games', release_date: Date.new(2018,9,7), esrb: 'Teen'},
+ {name: 'Angry Birds', description: 'The survival of the Angry Birds is at stake. Dish out revenge on the greedy pigs who stole their eggs. Use the unique powers of each bird to destroy the pigs’ defenses. Angry Birds features challenging physics-based gameplay and hours of replay value. Each level requires logic, skill and force to solve.  ', promo_image_url: 'http://3.bp.blogspot.com/-LC0jhbQoGHU/UyFJpUOd5XI/AAAAAAAALd8/LXfUUxedOs4/s1600/Angry+Birds01.jpg', developer: 'Rovio Entertainment', release_date: Date.new(2009,12,11), esrb: 'Everyone'},
+ {name: 'Cites: Skylines', description: 'A modern take on the classic city simulation. The game introduces new game play elements to realize the thrill and hardships of creating and maintaining a real city whilst expanding on some well-established tropes of the city building experience.', promo_image_url: 'https://i.ytimg.com/vi/rMrFWLfsXRg/maxresdefault.jpg', developer: 'Paradox Interactive', release_date: Date.new(2015,3,15), esrb: 'Everyone'},
+ {name: 'Grand Theft Auto V', description: 'Played from either a third-person or first-person perspective and its world is navigated on foot or by vehicle. Players control the three lead protagonists throughout single-player and switch between them both during and outside missions. The story is centred on the heist sequences, and many missions involve shooting and driving gameplay. A "wanted" system governs the aggression of law enforcement response to players who commit crimes. Grand Theft Auto Online, the game\'s online multiplayer mode, lets up to 30 players engage in a variety of different cooperative and competitive game modes.', promo_image_url: 'https://i.ytimg.com/vi/oSHC2b6CCCE/maxresdefault.jpg', developer: 'Rockstar Games', release_date: Date.new(2013,9,17), esrb: 'Mature'},
+ {name: 'Diablo III', description: 'A dungeon crawler action role-playing video game developed and published by Blizzard Entertainment. It is the third installment in the Diablo franchise.', promo_image_url: 'https://www.rxwallpaper.site/wp-content/uploads/download-full-hd-1080p-diablo-3-wallpapers-hd.jpg', developer: 'Blizzard Entertainment', release_date: Date.new(2012,5,15), esrb: 'Mature'},
+ {name: 'Mario Strikers Charged', description: 'Up to four players can participate in this game as play soccer, attempting to kick the ball into another opponent\'s goal; the soccer in this game, however, has several differences than the real soccer, such as the ability to tackle other players with minimal penalty, using Mario-themed items to give players an advantage over their opponents, and playing with stage hazards effectively.', promo_image_url: 'https://i.ytimg.com/vi/HoLEuqdDPRo/maxresdefault.jpg', developer: 'Nintendo', release_date: Date.new(2007,5,27), esrb: 'Everyone 10+'}
 ]
-
 game_attributes.each do |attribute|
  Game.create(attribute)
 end
-
 user_attributes = [
  {email: 'Donnie@gmail.com', username: "Donnie_isAwesomeXx", birthday: Date.new(1995,2,3), first_name: "Donnie", last_name: "Waite", password: 'godsdogs', password_confirmation: 'godsdogs'},
- {email: 'Kentaro@gmail.com', username: "K3TAK0", birthday: Date.new(1975,5,7), first_name: "Kentaro", last_name: "Kaneki", password: 'godsdogs', password_confirmation: 'godsdogs'},
- {email: 'Richard@gmail.com', username: "RichardForFifa", birthday: Date.new(1995,12,3), first_name: "Richard", last_name: "Holway", password: 'godsdogs', password_confirmation: 'godsdogs'},
- {email: 'Harry@gmail.com', username: "TheRanger", birthday: Date.new(1999,12,12), first_name: "Harry", last_name: "Johnson", password: 'godsdogs', password_confirmation: 'godsdogs'}
+ {email: 'Kentaro@gmail.com', username: "K3NTAK0", birthday: Date.new(1975,5,7), first_name: "Kentaro", last_name: "Kaneki", password: 'godsdogs', password_confirmation: 'godsdogs'},
+ {email: 'Richard@gmail.com', username: "ChristianoRichardo", birthday: Date.new(1995,12,3), first_name: "Richard", last_name: "Holway", password: 'godsdogs', password_confirmation: 'godsdogs'},
+ {email: 'Harry@gmail.com', username: "J_hasRYzEn", birthday: Date.new(1999,12,12), first_name: "Harry", last_name: "Johnson", password: 'godsdogs', password_confirmation: 'godsdogs'}
 ]
-
 user_attributes.each do |attribute|
  User.create(attribute)
 end
-
 review_attributes = [
- {title: 'Great game!', body: 'I had so much fun playing this game with friends. The graphics were swell and it made us happy', score: 10, game_id: 1, user_id: 1 },
- {title: 'Terrible game', body: 'I was so mad after I bought this game. The graphics were so bad it was unplayable.', score: 1, game_id: 2, user_id: 2},
- {title: 'NOOOO', body: 'NOOOOOOOO THIS GAME SUCKS!', score: 1, game_id: 3, user_id: 3 },
- {title: 'My mom', body: 'Wish my mom would play this with me. Minus 4 points for not being able get her to play.', score: 6, game_id: 2, user_id: 1 },
- {title: 'When?', body: 'When is the game coming out??', score: 1, game_id: 3, user_id: 2 },
- {title: 'Finished it!', body: 'Loved the game! Finished it already! Cannot wait till the next one comes out', score: 10, game_id: 1, user_id: 3 },
- {title: 'Food?', body: 'French toast?', score: 10, game_id: 3, user_id: 1 },
- {title: '$$$', body: 'I am so done with this game! It is pay to win!', score: 3, game_id: 1, user_id: 2 },
- {title: 'Old one is better.', body: 'I liked the old one better. The feel has changed and I do not like that', score: 6, game_id: 2, user_id: 3 },
- {title: 'Toxic Teams', body: 'Toxic teams, otherwise 10.', score: 7, game_id: 1, user_id: 4 },
- {title: 'Terrible', body: 'Same game every year.', score: 1, game_id: 2, user_id: 4 },
- {title: 'Changed EVEYTHING!', body: 'Back to its roots, like the good old days.', score: 8, game_id: 3, user_id: 4 },
+  #Overwatch
+ {title: 'Great game!', body: 'I had so much fun playing this game with friends. The graphics were great and it was enjoyable.', score: 9, game_id: 1, user_id: 4 },
+ {title: 'Toxic Teams', body: 'The game itself is okay but the community is terrible. I\'m gonna go back to FIFA.', score: 4, game_id: 1, user_id: 3 },
+ {title: 'Solid gameplay, yet too many heroes', body: 'Too many heroes to choose from, I sometimes get stuck trying to decide who to play', score: 6, game_id: 1, user_id: 1 },
+ {title: 'First impressions were great!', body: 'I played at a friend\'s house and had a lot of fun!', score: 8, game_id: 1, user_id: 2 },
+  #FIFA
+ {title: 'DO NOT BUY.', body: 'I don\'t like soccer at all after this game', score: 1, game_id: 2, user_id: 1 },
+ {title: 'BEST GAME EVER!', body: 'THE PHYSICS ONLY IMPROVED FROM FIFA 18!!!', score: 10, game_id: 2, user_id: 3 },
+ {title: 'I love the new modes', body: 'New modes are great in FIFA 19', score: 6, game_id: 2, user_id: 2 },
+ {title: 'I only play with friends', body: 'I only play with my friends so I never really tried out all of the features', score: 5, game_id: 2, user_id: 4 },
+  #COD
+ {title: 'Not too sure', body: 'Haven\'t played it yet, but looks promising', score: 6, game_id: 3, user_id: 3 },
+ {title: 'Pleasantly surprised', body: 'Wow!!! I didn’t think they were able to pull it off but black ops 4 proves that cod can still provide the action and gritty war game that fans want. Blackout is on a whole new level and great addition to the game multiplayer comes back and is still great, and the zombies is fun and challenging like we’ve never seen before. I can’t say this is the best cod game to come out recently but that doesn’t mean anything to the fact that it is great!!', score: 10, game_id: 3, user_id: 2 },
+ {title: 'Same old game', body: 'Just a repaste from the Call of Duty franchise, nothing new except Blackout. Blackout is just another repaste of other battle royale game modes.', score: 3, game_id: 3, user_id: 1 },
+ {title: 'Back to ground-only!', body: 'Black ops made a great move cuttting out the jetpacks out of the game, it was not fun at all. This game brings it back to its roots and reminds me of MW2.', score: 8, game_id: 3, user_id: 4 }
 ]
-
 review_attributes.each do |attribute|
  Review.create(attribute)
 end

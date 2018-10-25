@@ -64,7 +64,7 @@ a.add-review-link:hover{
   border: 3px solid lightgray;
   border-right: none;
   padding: 20px 30px;
-  background-color: white;
+
 }
 
 .delete-review-button{
@@ -131,4 +131,9 @@ a.add-review-link:hover{
 
 .review-text{
   font-size: 1.2rem;
+}
+
+.review-card-user-photo {
+  height: 37px;
+  width: 30px;
 }
