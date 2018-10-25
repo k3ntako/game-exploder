@@ -84,7 +84,7 @@ class GamesShowPage extends Component {
 
       let color = this.pickScoreColor(review.score)
       console.log(review.user.profile_photo.url)
-      let profilePhoto = "https://admin.localsearchprofiles.com/Public/PublishedMedia/Images/P_ADP0001P_ADP002YY_f0054e02-7ee0-4a7b-ae66-d8c5ccb30bf8.jpg"
+      let profilePhoto = "https://vignette.wikia.nocookie.net/bungostraydogs/images/1/1e/Profile-icon-9.png/revision/latest?cb=20171030104015"
       if (review.user.profile_photo.url) {
         profilePhoto = review.user.profile_photo.url
       }
