@@ -11,6 +11,7 @@ body{
   background-image: -webkit-linear-gradient(gray, black);
   background-image: -o-linear-gradient(gray, black);
   background-image: linear-gradient(gray, black);
+  user-select: none;
 }
 
 .top-bar ul{
@@ -27,4 +28,8 @@ ul.menu > li > a, #title-link {
 
 ul.menu > li > a:hover, #title-link:hover {
   color: steelblue;
+}
+
+img{
+  user-select: none;
 }

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'games/search', to: 'games#search'
       resources :games, only: [:index, :create, :show] do
-        resources :reviews, only: [:new, :create, :index, :show]
+        resources :reviews, only: [:new, :create, :index, :destroy, :show]
       end
       resources :reviews, only: [:new, :create, :show] do
         resources :comments, only: [:new, :create, :index, :show]

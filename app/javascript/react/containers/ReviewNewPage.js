@@ -11,7 +11,7 @@ class ReviewNewPage extends Component {
       reviews:  [],
       reviewTitle: '',
       reviewBody: '',
-      reviewScore: ''
+      reviewScore: 1
     }
     this.handleScoreChange = this.handleScoreChange.bind(this)
     this.addNewReview = this.addNewReview.bind(this)
@@ -30,7 +30,6 @@ class ReviewNewPage extends Component {
         'Content-Type': 'application/json' },
       credentials: 'same-origin'
     })
-
     .then(formPayload => formPayload.json())
     .then(formPayload => {
       this.setState({
@@ -61,13 +60,11 @@ class ReviewNewPage extends Component {
     score: this.state.reviewScore
     }
     this.addNewReview(formPayload)
-
-
   }
 
   render() {
     return(
-      <div className="cell small-22 small-offset-1 cell large-20 large-offset-2">
+      <div>
       <h1> Add your own review! </h1>
       <form className="new-article-form callout" onSubmit={this.handleSubmit}>
         <TitleField
