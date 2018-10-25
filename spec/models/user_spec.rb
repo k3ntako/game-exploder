@@ -21,5 +21,6 @@ RSpec.describe User, type: :model do
 
     it { should have_valid(:encrypted_password).when("Smith") }
     it { should_not have_valid(:encrypted_password).when(nil, "") }
+
   end
 end

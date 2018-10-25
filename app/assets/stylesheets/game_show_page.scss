@@ -63,7 +63,7 @@ a.add-review-link:hover{
   border: 3px solid lightgray;
   border-right: none;
   padding: 20px 30px;
-  background-color: white;
+
 }
 
 .review-card-score{
@@ -112,4 +112,9 @@ a.add-review-link:hover{
   text-align: center;
   margin: 0 auto;
   font-size: 2.5rem;
+}
+
+.review-card-user-photo {
+  height: 37px;
+  width: 30px;
 }
