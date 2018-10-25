@@ -13,8 +13,8 @@ class Api::V1::ReviewsController < ApplicationController
     render json: new_review
   end
 
-  def index
-    render json: Game.find(params[:game_id]).reviews.order("created_at DESC")
+  def show
+    render json: Review.find(params[:id])
   end
 
   private
