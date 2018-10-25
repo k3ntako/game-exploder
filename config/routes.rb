@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   root 'games#index'
   get '/games', to: 'games#index'
   get '/games/:id', to: 'games#index'
+  get '/games/search/results/:searchString', to: 'games#index'
   get '/games/:id/reviews/new', to: 'games#index'
 end

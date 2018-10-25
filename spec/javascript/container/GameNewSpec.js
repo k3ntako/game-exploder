@@ -2,12 +2,10 @@ import ReviewNewPage from '../../../app/javascript/react/containers/ReviewNewPag
 import fetchMock from 'fetch-mock'
 
 describe('review new page', () => {
-  describe('review new page', () => {
-    it('should pass', () => {
-      fetchMock.get('/api/v1/games/5/reviews', {
-        status: 201,
-      });
-      fetch('/api/v1/games/5/reviews').then(() => {console.log('Success')}).catch(() => { console.log('error')})
+  it('should pass', () => {
+    fetchMock.get('/api/v1/games/5/reviews', {
+      status: 201,
     });
+    fetch('/api/v1/games/5/reviews').then(() => {console.log('working?')}).catch(() => { console.log('error')})
   });
 });
