@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SearchBar from './SearchBar'
 import GameCard from './GameCard'
 
 
@@ -30,7 +29,6 @@ class GameIndex extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
         <GameCard games={this.state.games} />
       </div>
     )

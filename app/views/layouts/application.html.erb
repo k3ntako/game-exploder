@@ -3,6 +3,7 @@
 <head>
   <title>GameExploder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   <%= stylesheet_link_tag 'application', media: 'all' %>
 
   <%= javascript_include_tag "application" %>
@@ -12,12 +13,26 @@
 <body>
 
 
-  <div class="top-bar">
-    <div class="top-bar-left">
+  <div class="grid-x top-bar">
+    <div class="cell small-6">
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text"><a id="title-link" href="/">GameExploder</a></li>
       </ul>
     </div>
+
+    <div class="cell small-12 search-bar">
+      <form >
+        <div class="grid-x">
+          <div class="cell small-20">
+            <input id="search-input" type="text" id="number" name="number" placeholder="ExploderSearch"/>
+          </div>
+          <div class="cell small-4">
+            <button id="search-submit-button" type="submit" onclick="window.location = '/games/search/results/' + number.value; return false;" value="Explode"><i class="fas fa-bomb"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+
     <div class="top-bar-right">
       <ul class="menu">
         <%- if current_user -%>
