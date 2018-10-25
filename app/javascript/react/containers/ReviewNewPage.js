@@ -11,7 +11,7 @@ class ReviewNewPage extends Component {
       reviews:  [],
       reviewTitle: '',
       reviewBody: '',
-      reviewScore: ''
+      reviewScore: 1
     }
     this.handleScoreChange = this.handleScoreChange.bind(this)
     this.addNewReview = this.addNewReview.bind(this)
@@ -30,12 +30,12 @@ class ReviewNewPage extends Component {
         'Content-Type': 'application/json' },
       credentials: 'same-origin'
     })
-
     .then(formPayload => formPayload.json())
     .then(formPayload => {
       this.setState({
         reviews: this.state.reviews.concat(formPayload),
       })
+      browserHistory.push(`/games/${this.props.params.id}`)
     })
   }
 
@@ -59,7 +59,6 @@ class ReviewNewPage extends Component {
     score: this.state.reviewScore
     }
     this.addNewReview(formPayload)
-    browserHistory.push(`/games/${this.props.params.id}`)
   }
 
   render() {
