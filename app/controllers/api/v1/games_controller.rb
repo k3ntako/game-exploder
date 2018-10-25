@@ -1,10 +1,14 @@
 class Api::V1::GamesController < ApplicationController
   def show
-    render json: Game.find(params[:id]), adapter: :json
+    game = [Game.find(params[:id])]
+
+    render json: ActiveModel::Serializer::ArraySerializer.new(game, { scope: "show" })
+
   end
 
   def index
-    render json: Game.all
+    all_games = Game.all
+    render json: ActiveModel::Serializer::ArraySerializer.new(all_games)
   end
 
   def create
@@ -17,5 +21,4 @@ class Api::V1::GamesController < ApplicationController
     @games = Game.where("name ILIKE ?", "%#{params['search_string']}%")
     render json: @games
   end
-
 end
