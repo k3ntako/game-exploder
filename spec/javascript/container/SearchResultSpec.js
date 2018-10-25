@@ -7,7 +7,7 @@ describe('review new page', () => {
       fetchMock.get('/api/v1/games/search', {
         status: 201,
       });
-      fetch('/api/v1/games/search').then(() => {console.log('working?')}).catch(() => { console.log('error')})
+      fetch('/api/v1/games/search').then(() => {console.log('Success')}).catch(() => { console.log('error')})
     });
   });
 });

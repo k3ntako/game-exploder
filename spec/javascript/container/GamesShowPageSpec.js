@@ -84,9 +84,7 @@ describe('Games Show Page', () => {
     it('should render an img with promotion image', (done) => {
       setTimeout(() => {
         expect(wrapper.find('img')).toBePresent()
-        expect(wrapper.find('img').props()).toEqual({
-          src: 'https://commons.wikimedia.org/wiki/File:Weather_symbols_p.png'
-        });
+        expect(wrapper.find('img').nodes[0].src).toEqual('https://commons.wikimedia.org/wiki/File:Weather_symbols_p.png');
         done()
       })
     })
@@ -95,7 +93,35 @@ describe('Games Show Page', () => {
   describe('Review', () => {
     it('should render the number of reviews received', (done) => {
       setTimeout(() => {
-        expect(wrapper.find('.review-card').length).toEqual(0);
+
+        expect(wrapper.find('.review-cards').length).toEqual(2);
+        done()
+      })
+    });
+
+    it('should render a class, "review-card-score-text" with score', (done) => {
+      setTimeout(() => {
+        expect(wrapper.find('.review-card-score-text').nodes[0].innerHTML).toEqual(review.reviews[0].score.toString());
+        expect(wrapper.find('.review-card-score-text').nodes[1].innerHTML).toEqual(review.reviews[1].score.toString());
+        done()
+      })
+    });
+
+    it('should contain links with the title', (done) => {
+      setTimeout(() => {
+        expect(wrapper.find('a').nodes[0].innerHTML).toEqual(review.reviews[0].title);
+        expect(wrapper.find('a').nodes[1].innerHTML).toEqual(review.reviews[1].title);
+        done()
+      })
+    });
+
+    it('should contain username and review body', (done) => {
+      setTimeout(() => {
+        expect(wrapper.find('.review-card-username').nodes[0].innerHTML).toMatch(review.reviews[0].user.username);
+        expect(wrapper.find('.review-card-username').nodes[1].innerHTML).toMatch(review.reviews[1].user.username);
+
+        expect(wrapper.find('.review-card-text').nodes[0].innerHTML).toMatch(review.reviews[0].body);
+        expect(wrapper.find('.review-card-text').nodes[1].innerHTML).toMatch(review.reviews[1].body);
         done()
       })
     });
