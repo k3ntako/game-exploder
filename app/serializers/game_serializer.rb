@@ -1,6 +1,7 @@
 class GameSerializer < ActiveModel::Serializer
   attributes :id, :name, :logo_url, :promo_image_url, :description, :release_date, :publisher, :developer, :esrb, :average_score
 
+  attribute :current_user, if: :show_page?
   has_many :reviews, if: :show_page?
 
   def average_score
@@ -16,9 +17,13 @@ class GameSerializer < ActiveModel::Serializer
   end
 
   def show_page?
-    if(scope == "show")
+    if(scope)
       return true
     end
     false
+  end
+
+  def current_user
+    scope[:user]
   end
 end

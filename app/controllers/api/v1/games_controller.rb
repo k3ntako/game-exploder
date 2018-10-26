@@ -1,16 +1,13 @@
 class Api::V1::GamesController < ApplicationController
   def show
     game = [Game.find(params[:id])]
-    render json: ActiveModel::Serializer::ArraySerializer.new(game, { scope: "show" })
+    render json: ActiveModel::Serializer::ArraySerializer.new(game, { scope: {page: "show", user: current_user} })
   end
 
   def index
     all_games = Game.all
     render json: ActiveModel::Serializer::ArraySerializer.new(all_games)
-    render json: Game.find(params[:id])
   end
-
-
 
   def create
     data = JSON.parse(request.body.read)
