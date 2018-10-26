@@ -16,6 +16,7 @@ class ReviewsShowPage extends Component {
     this.handleBodyChange = this.handleBodyChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.addNewComment = this.addNewComment.bind(this)
+    this.handleClear = this.handleClear.bind(this)
   }
 
   fetchReview(){
@@ -53,7 +54,7 @@ class ReviewsShowPage extends Component {
       return response.json();
     })
     .then(data => {
-      if ( data.length) {
+      if (data.length) {
       this.setState({ comments: data })
     }
     })
@@ -110,7 +111,12 @@ class ReviewsShowPage extends Component {
     body: this.state.commentBody
     }
     this.addNewComment(formPayload)
+    this.handleClear(event)
+  }
 
+  handleClear(event) {
+    event.preventDefault()
+    this.setState({commentBody: ""})
   }
 
   handleBodyChange(event) {
@@ -124,7 +130,10 @@ class ReviewsShowPage extends Component {
     console.log(this.state.comments)
     let comments = this.state.comments.map(comment => {
       return(
-        <div key={comment.id}> {comment.body} </div>
+        <div key={comment.id} className= "comment-card cell small-18 medium-20 large-22 ">
+          <span className="review-card-username"></span>
+          <p>{comment.body}</p>
+        </div>
       )
 
     })
@@ -148,25 +157,25 @@ class ReviewsShowPage extends Component {
 
         <div>
        <div>
-       <h3 className="review-card-text"> Add a comment! </h3>
-       <form className="new-article-form callout" onSubmit={this.handleSubmit}>
+       <h3 className="comment-card-text"> Add Comment </h3>
+       <form className="new-comment-form callout">
          <BodyField
            content={this.state.commentBody}
-           label="Comment Body"
            name="comment-body"
            id={this.state.id}
            handleBodyChange={this.handleBodyChange}
            />
            <div className="button-group">
-
-             <button className="button">Clear</button>
-             <input className="button" type="submit" value="Submit"/>
+           <button className="button" onClick={this.handleSubmit}>Submit</button>
+           <button className="button" onClick={this.handleClear}>Clear</button>
            </div>
+
        </form>
        </div>
        </div>
 
        <div>
+       <h3 className="comment-card-text" > Comments </h3>
        {comments}
        </div>
        </div>

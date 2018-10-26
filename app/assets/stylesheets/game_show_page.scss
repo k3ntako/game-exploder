@@ -54,9 +54,14 @@ a.add-review-link:hover{
   color: black;
 }
 
-//Review Card
 .review-cards{
   margin-top: 3vh;
+  background-color: white
+}
+
+.comment-card-text{
+  padding-left: 27px;
+  margin-top: 20px;
 }
 
 .review-card{
@@ -65,6 +70,18 @@ a.add-review-link:hover{
   border-right: none;
   padding: 20px 30px;
 
+}
+
+.new-comment-form{
+  margin-top: 5px;
+  border: 3px solid lightgray;
+
+}
+.comment-card{
+    background-color: white;
+    margin-top: 10px;
+    border: 3px solid lightgray;
+    padding: 20px 30px;
 }
 
 .delete-review-button{
