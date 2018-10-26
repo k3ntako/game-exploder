@@ -14,8 +14,8 @@
   text-align: center;
   padding: 10px 0px;
   font-weight: 900;
+  user-select: none;
 }
-
 
 .game-attributes{
   padding: 1.5vw 1.5vw;
@@ -40,6 +40,7 @@
   background-image: linear-gradient(#0080FF, #2666CF);
   display: flex;
   align-items: center;
+  user-select: none;
 }
 
 a.add-review-link{
@@ -66,9 +67,22 @@ a.add-review-link:hover{
 
 }
 
+.delete-review-button{
+  color: white;
+  background: red;
+  border: darkred solid 3px;
+  padding: 5px;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.delete-review-button:hover{
+  color: darkred;
+}
+
 .review-card-score{
   margin-top: 10px;
-
+  user-select: none;
   text-align: center;
   font-weight: 900;
   border-top-right-radius: 25px;
@@ -107,11 +121,16 @@ a.add-review-link:hover{
 .review-card-score-center-text{
   margin: auto;
 }
+
 .review-card-score-text{
   color: white;
   text-align: center;
   margin: 0 auto;
   font-size: 2.5rem;
+}
+
+.review-text{
+  font-size: 1.2rem;
 }
 
 .review-card-user-photo {

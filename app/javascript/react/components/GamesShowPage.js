@@ -1,15 +1,49 @@
 import React, { Component } from 'react'
+import ReviewsShowPage from './ReviewsShowPage'
 
 class GamesShowPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       gameInfo: {},
-      reviews: []
+      reviews: [],
+      current_user_id: null
     }
     this.fetchGame = this.fetchGame.bind(this)
     this.pickScoreColor = this.pickScoreColor.bind(this)
+    this.deleteReview = this.deleteReview.bind(this)
+    this.deleteReviewInState = this.deleteReviewInState.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
+
+  // fetchReviews(){
+  //   fetch(`/api/v1/games/${this.props.params.id}/reviews`)
+  //   .then(response => {
+  //     if (response.ok) {
+  //       return response;
+  //     } else {
+  //       let errorMessage = `${response.status} (${response.statusText})`,
+  //       error = new Error(errorMessage);
+  //       throw(error);
+  //     }
+  //   })
+  //   .then(response => {
+  //     return response.json();
+  //   })
+  //   .then(data => {
+  //     let user_num = data.user_id;
+  //     if(user_num == -1){
+  //       user_num = null
+  //     }
+  //
+  //     this.setState({
+  //       reviews: data.reviews,
+  //       current_user_id: user_num
+  //     })
+  //
+  //   })
+  //   .catch(error => console.error(`Error in fetch: ${error.message}`));
+  // };
 
   fetchGame(){
     fetch(`/api/v1/games/${this.props.params.id}`)
@@ -30,6 +64,57 @@ class GamesShowPage extends Component {
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   };
+
+  handleDeleteClick(event){
+    if (confirm("Are you sure you want to delete your review?")) {
+      let reviewId = event.target.id
+      this.deleteReview(reviewId)
+    } else {
+        alert("Review was NOT deleted.");
+    }
+  }
+
+  deleteReview(reviewId){
+    let gameId = this.props.params.id
+
+		fetch(`/api/v1/games/${gameId}/reviews/${reviewId}`,
+		{
+			method: 'DELETE',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json' } ,
+			credentials: 'same-origin'
+		})
+		.then(response => {
+			if (response.ok) {
+				alert("Review was deleted!")
+				this.deleteReviewInState(Number(reviewId))
+			}
+			else {
+				let errorMessage = `${response.status} (${response.statusText})`,
+					error = new Error(errorMessage)
+				throw error
+			}
+		})
+		.catch(error => {
+      if(error.message === "401 (Unauthorized)"){
+        alert("You can only delete your own messages.");
+      }
+			console.error(`ERROR IN FETCH: ${error}`)
+		})
+	}
+
+ 	deleteReviewInState(reviewId){
+    let updatedReviews = []
+    this.state.reviews.forEach(review => {
+      if(review.id !== reviewId){
+        updatedReviews.push(review)
+      }
+    })
+    this.setState({
+      reviews: updatedReviews
+    })
+  }
 
   pickScoreColor(score){
     let color;
@@ -60,7 +145,6 @@ class GamesShowPage extends Component {
       gameReviews = gameInformation.reviews;
     }
 
-
     let totalScore = 0;
     let reviewCards = gameReviews.map(review => {
       totalScore += review.score
@@ -73,15 +157,28 @@ class GamesShowPage extends Component {
       if (review.user.profile_photo.url) {
         profilePhoto = review.user.profile_photo.url
       }
+
+      let deleteButton
+      if(this.state.current_user_id === review.user.id){
+        deleteButton = (<span className="delete-review-button" onClick={this.handleDeleteClick} id={review.id}>Delete Review</span>)
+      }
+
+
+      let profilePhoto = "https://vignette.wikia.nocookie.net/bungostraydogs/images/1/1e/Profile-icon-9.png/revision/latest?cb=20171030104015"
+      // if (review.user.profile_photo.url) {
+      //   profilePhoto = review.user.profile_photo.url
+      // }
+
       return(
         <div key={review.id} className="grid-x cell review-cards">
           <div className="review-card cell small-18 medium-20 large-22 ">
             <div className="review-card-text">
-              <h3><a className="review-card-title" href="/">{review.title}</a></h3>
+              <h3><a className="review-card-title" href={`/games/${this.props.params.id}/reviews/${review.id}`}>{review.title}</a></h3>
               <img className="review-card-user-photo" src={profilePhoto} />
               <span className="review-card-username">{review.username} </span>
               <span className="review-card-date">- {createdDateText}</span>
-              <p>{review.body}</p>
+              <p className="review-text">{review.body}</p>
+              {deleteButton}
             </div>
           </div>
           <div className={`cell small-6 medium-4 large-2 review-card-score ${color}`}>
@@ -111,6 +208,17 @@ class GamesShowPage extends Component {
       date = new Date(gameInformation.release_date).toLocaleDateString("en-US")
     }
 
+    let addReview;
+    let gameAttributesClasses = "small-24"
+    if(this.state.current_user_id){
+      gameAttributesClasses = "large-21 small-18"
+      addReview = (
+        <div className="add-review cell large-3 small-6">
+          <a className="add-review-link " href={`/games/${this.props.params.id}/reviews/new`}>Add Review</a>
+        </div>
+      )
+    }
+
     return (
       <div className="game-show-page grid-x grid-margin-x">
         <div className="cell small-24">
@@ -130,12 +238,11 @@ class GamesShowPage extends Component {
 
               {publisher}
 
-
-            </div>
-            <div className="add-review cell large-3 small-6"><a className="add-review-link " href={`/games/${this.props.params.id}/reviews/new`}>Add Review</a></div>
           </div>
-            {reviewCards}
+          {addReview}
         </div>
+        {reviewCards}
+      </div>
     )
   }
 }

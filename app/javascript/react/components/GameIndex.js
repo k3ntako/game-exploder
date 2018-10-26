@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SearchBar from './SearchBar'
 import GameCard from './GameCard'
 
 
@@ -29,8 +28,7 @@ class GameIndex extends Component {
 
   render() {
     return (
-      <div className="cell small-22 small-offset-1 cell large-20 large-offset-2">
-        <SearchBar />
+      <div>
         <GameCard games={this.state.games} />
       </div>
     )
