@@ -1,5 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
+    before_action :authorize_user, only: :create
 
   def index
     comments = Review.find(params[:review_id]).comments.order("created_at DESC")
