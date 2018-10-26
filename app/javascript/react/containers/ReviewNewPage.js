@@ -34,7 +34,6 @@ class ReviewNewPage extends Component {
     .then(formPayload => {
       this.setState({
         reviews: this.state.reviews.concat(formPayload)
-
       })
       browserHistory.push(`/games/${this.props.params.id}`)
     })

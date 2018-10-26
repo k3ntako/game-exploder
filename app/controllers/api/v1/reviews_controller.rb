@@ -1,20 +1,7 @@
 class Api::V1::ReviewsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
-  before_action :authorize_user, except: [:index]
+  before_action :authorize_user, except: :show
 
-  def index
-    reviews = Game.find(params[:game_id]).reviews.order("created_at DESC")
-    user_id = -1
-
-    if current_user
-      user_id = current_user.id
-    end
-
-    render json: {reviews: ActiveModel::Serializer::ArraySerializer.new(reviews,each_serializer: ReviewSerializer), user_id: user_id}
-  end
-
-  def new
-  end
 
   def create
     new_review = Review.create(title: review_params[:title], body: review_params[:body], score: review_params[:score], game_id: review_params[:game_id], user: current_user)

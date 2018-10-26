@@ -1,5 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
+    before_action :authorize_user, only: :create
 
   def index
     comments = Review.find(params[:review_id]).comments.order("created_at DESC")
@@ -19,5 +20,12 @@ class Api::V1::CommentsController < ApplicationController
 
   def comment_params
     params.permit(:body, :review_id)
+  end
+
+  def authorize_user
+    if !user_signed_in?
+      raise ActionController::RoutingError.new("Not Authorized")
+      redirect_to root_path
+    end
   end
 end

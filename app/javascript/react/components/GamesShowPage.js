@@ -5,46 +5,14 @@ class GamesShowPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameInfo: {},
-      reviews: [],
-      current_user_id: null
+      gameInfo: {}
     }
     this.fetchGame = this.fetchGame.bind(this)
-    this.fetchReviews = this.fetchReviews.bind(this)
     this.pickScoreColor = this.pickScoreColor.bind(this)
     this.deleteReview = this.deleteReview.bind(this)
     this.deleteReviewInState = this.deleteReviewInState.bind(this)
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
-
-  fetchReviews(){
-    fetch(`/api/v1/games/${this.props.params.id}/reviews`)
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      let user_num = data.user_id;
-      if(user_num == -1){
-        user_num = null
-      }
-
-      this.setState({
-        reviews: data.reviews,
-        current_user_id: user_num
-      })
-
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`));
-  };
 
   fetchGame(){
     fetch(`/api/v1/games/${this.props.params.id}`)
@@ -61,7 +29,10 @@ class GamesShowPage extends Component {
       return response.json();
     })
     .then(data => {
-      this.setState({ gameInfo: data })
+      let reviews = data[0].reviews.reverse()
+      let games = data
+      games[0].reviews = reviews
+      this.setState({ gameInfo: games })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   };
@@ -107,13 +78,17 @@ class GamesShowPage extends Component {
 
  	deleteReviewInState(reviewId){
     let updatedReviews = []
-    this.state.reviews.forEach(review => {
+    this.state.gameInfo[0].reviews.forEach(review => {
       if(review.id !== reviewId){
         updatedReviews.push(review)
       }
     })
+
+    let updatedGameInfo = this.state.gameInfo
+    updatedGameInfo[0].reviews = updatedReviews
+
     this.setState({
-      reviews: updatedReviews
+      gameInfo: updatedGameInfo
     })
   }
 
@@ -130,36 +105,39 @@ class GamesShowPage extends Component {
     }else if(score <= 10){
      color = "score-perfect"
     }
-
     return color
   }
 
   componentDidMount(){
     this.fetchGame()
-    this.fetchReviews()
   }
 
   render (){
+    let gameInformation = [];
+    let gameReviews = [];
+    if(this.state.gameInfo.length){
+      gameInformation = this.state.gameInfo[0];
+      gameReviews = gameInformation.reviews;
+    }
 
     let totalScore = 0;
-    let reviewCards = this.state.reviews.map(review => {
+    let reviewCards = gameReviews.map(review => {
       totalScore += review.score
 
       let createdDate = new Date(review.created_at)
       let createdDateText = createdDate.toLocaleDateString("en-US")
 
       let color = this.pickScoreColor(review.score)
+      let profilePhoto = "https://vignette.wikia.nocookie.net/bungostraydogs/images/1/1e/Profile-icon-9.png/revision/latest?cb=20171030104015"
 
-      let deleteButton
-      if(this.state.current_user_id === review.user.id){
-        deleteButton = (<span className="delete-review-button" onClick={this.handleDeleteClick} id={review.id}>Delete Review</span>)
+      if (review.photo.url) {
+        profilePhoto = review.photo.url
       }
 
-
-      let profilePhoto = "https://vignette.wikia.nocookie.net/bungostraydogs/images/1/1e/Profile-icon-9.png/revision/latest?cb=20171030104015"
-      // if (review.user.profile_photo.url) {
-      //   profilePhoto = review.user.profile_photo.url
-      // }
+      let deleteButton
+      if(gameInformation.current_user && gameInformation.current_user.id === review.user_id){
+        deleteButton = (<span className="delete-review-button" onClick={this.handleDeleteClick} id={review.id}>Delete Review</span>)
+      }
 
       return(
         <div key={review.id} className="grid-x cell review-cards">
@@ -167,7 +145,7 @@ class GamesShowPage extends Component {
             <div className="review-card-text">
               <h3><a className="review-card-title" href={`/games/${this.props.params.id}/reviews/${review.id}`}>{review.title}</a></h3>
               <img className="review-card-user-photo" src={profilePhoto} />
-              <span className="review-card-username">{review.user.username} </span>
+              <span className="review-card-username">{review.username} </span>
               <span className="review-card-date">- {createdDateText}</span>
               <p className="review-text">{review.body}</p>
               {deleteButton}
@@ -179,33 +157,31 @@ class GamesShowPage extends Component {
             </div>
           </div>
         </div>
-        )
-      })
+      )
+    })
 
-      let averageScoreText, color;
-      if(this.state.reviews.length){
-        let averageScore = (totalScore/this.state.reviews.length).toFixed(1)
-        averageScoreText = `Exploder Score: ${averageScore}/10`
-        color = this.pickScoreColor(averageScore)
-      }else {
-        averageScoreText = "No Reviews"
-        color = this.pickScoreColor(-1)
-      }
+    let averageScoreText;
+    let color = this.pickScoreColor(gameInformation.average_score);
+    if(gameInformation.average_score && gameInformation.average_score != -1){
+      averageScoreText = `ExploderScore: ${gameInformation.average_score.toFixed(1)}/10`
+    }else {
+      averageScoreText = "No Reviews"
+    }
 
+    let publisher;
+    if(gameInformation.publisher){
+      publisher = (<p className="game-attribute"><span className="game-attribute-title">Publisher:</span> {gameInformation.publisher}</p>)
+    }
 
-      let publisher;
-      if(this.state.gameInfo.publisher){
-        publisher = (<p className="game-attribute"><span className="game-attribute-title">Publisher:</span> {this.state.gameInfo.publisher}</p>)
-      }
-
-      let date;
-      if(this.state.gameInfo.release_date){
-        date = new Date(this.state.gameInfo.release_date).toLocaleDateString("en-US")
-      }
+    let date;
+    if(gameInformation.release_date){
+      date = new Date(gameInformation.release_date).toLocaleDateString("en-US")
+    }
 
     let addReview;
     let gameAttributesClasses = "small-24"
-    if(this.state.current_user_id){
+    console.log(gameInformation.current_user);
+    if(gameInformation.current_user){
       gameAttributesClasses = "large-21 small-18"
       addReview = (
         <div className="add-review cell large-3 small-6">
@@ -217,19 +193,19 @@ class GamesShowPage extends Component {
     return (
       <div className="game-show-page grid-x grid-margin-x">
         <div className="cell small-24">
-          <h1 className="game-show-page-title">{this.state.gameInfo.name}</h1>
+          <h1 className="game-show-page-title">{gameInformation.name}</h1>
         </div>
         <div className="cell small-24 large-14">
           <div className={`show-page-score ${color}`}>{averageScoreText}</div>
-          <img src={this.state.gameInfo.promo_image_url} />
+          <img src={gameInformation.promo_image_url} />
         </div>
         <div className="cell small-24 large-10 grid-y">
           <div className={`game-attributes cell ${gameAttributesClasses}`}>
-            <p className="game-attribute"><span className="game-attribute-title">{this.state.gameInfo.name}</span> {this.state.gameInfo.description}</p>
-            <p className="game-attribute"><span className="game-attribute-title">Number of Reviews:</span> {this.state.reviews.length}</p>
-            <p className="game-attribute"><span className="game-attribute-title">ESRB Rating:</span> {this.state.gameInfo.esrb}</p>
+            <p className="game-attribute"><span className="game-attribute-title">{gameInformation.name}</span> {gameInformation.description}</p>
+            <p className="game-attribute"><span className="game-attribute-title">Number of Reviews:</span> {gameReviews.length}</p>
+            <p className="game-attribute"><span className="game-attribute-title">ESRB Rating:</span> {gameInformation.esrb}</p>
             <p className="game-attribute"><span className="game-attribute-title">Release Date:</span> {date}</p>
-            <p className="game-attribute"><span className="game-attribute-title">Developer:</span> {this.state.gameInfo.developer}</p>
+            <p className="game-attribute"><span className="game-attribute-title">Developer:</span> {gameInformation.developer}</p>
 
               {publisher}
 
