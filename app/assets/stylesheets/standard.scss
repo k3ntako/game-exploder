@@ -53,3 +53,27 @@ form{
   margin: 0px;
   padding: 0px;
 }
+
+.flash{
+  width: 100vw;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.flash-notice{
+  background-color: steelblue;
+}
+
+#error_explanation{
+  background-color: white;
+  margin: 10px 0;
+  border: black 3px solid;
+  padding: 10px 20px;
+}
+
+#error_explanation > h2 {
+  color: red;
+}
