@@ -27,8 +27,8 @@ class SearchResult extends Component {
 
   render() {
     return(
-      <div className="cell small-22 small-offset-1 cell large-20 large-offset-2">
-      <h2>Search Results for: {this.props.params.searchString}</h2>
+      <div>
+        <h2>Search Results for: {this.props.params.searchString}</h2>
         <GameCard games={this.state.games} />
       </div>
     )

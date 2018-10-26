@@ -16,7 +16,8 @@ class Api::V1::GamesController < ApplicationController
   end
 
   def search
-    @games = Game.where("name ILIKE ?", "%#{params['search_string']}%")
-    render json: @games
+    games = Game.where("name ILIKE ?", "%#{params['search_string']}%")
+
+    render json: ActiveModel::Serializer::ArraySerializer.new(games)
   end
 end
