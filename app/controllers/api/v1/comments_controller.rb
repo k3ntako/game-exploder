@@ -11,7 +11,6 @@ class Api::V1::CommentsController < ApplicationController
 
   def create
     new_comment = Comment.create(body: comment_params[:body], review_id: comment_params[:review_id], user: current_user)
-
     render json: new_comment
   end
 
